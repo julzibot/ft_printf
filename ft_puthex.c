@@ -1,43 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_puthex.c                                         :+:      :+:    :+:   */
+/*   ft_puthex.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jibot <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 19:03:52 by jibot             #+#    #+#             */
-/*   Updated: 2021/11/04 15:04:53 by jibot            ###   ########.fr       */
+/*   Updated: 2021/11/04 18:29:52 by jibot            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "./printlib/printlib.h"
+#include "ft_printf.h"
 
-static unsigned int is_negative(int n, int fd)
+int	vabs(int n)
 {
-	unsigned int 	count;
+	if (n < 0)
+		return (-n);
+	else
+		return (n);
+}
+
+/*static int	is_negative(int n, int fd)
+{
+	int	count;
 
 	count = 0;
 	if (n == -2147483648)
-	{
-		ft_putstr_fd("-80000000", fd);
-		count += 9;
-	}
+		count += ft_putstr_fd("-80000000", fd);
 	else if (n < 0)
-	{
-		ft_putchar_fd('-', 1);
-		count++;
-	}
+		count += ft_putchar_fd('-', fd);
 	return (count);
-}
+}*/
 
-unsigned int	ft_puthex(int n, char c)
+int	ft_puthex(unsigned int n, char c)
 {
-	unsigned int	count;
+	static int		count;
 	char			*base;
-	int				mod;
+	unsigned int	mod;
 
-	count = is_negative(n, 1);
-	if (n < 0)
-		n = -n;
 	if (c == 'x')
 		base = "0123456789abcdef";
 	else if (c == 'X')
@@ -47,10 +46,9 @@ unsigned int	ft_puthex(int n, char c)
 		mod = n % 16;
 		n /= 16;
 		ft_puthex(n, c);
-		ft_putchar_fd(base[mod], 1);
-		count++;
+		count += ft_putchar_fd(base[mod], 1);
 	}
 	else
-		ft_putchar_fd(base[n], 1);
+		count += ft_putchar_fd(base[(unsigned int)n], 1);
 	return (count);
 }

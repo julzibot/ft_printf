@@ -6,15 +6,15 @@
 /*   By: jibot <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 18:04:11 by jibot             #+#    #+#             */
-/*   Updated: 2021/11/04 15:26:19 by jibot            ###   ########.fr       */
+/*   Updated: 2021/11/04 17:46:06 by jibot            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "./printlib/printlib.h"
+#include "ft_printf.h"
 
-unsigned int	ft_puthexp(unsigned long n, char c)
+int	ft_puthexp(unsigned long n, char c)
 {
 	char				*base;
-	unsigned int		count;
+	static int			count;
 	unsigned long		mod;
 
 	count = 2;
@@ -27,13 +27,9 @@ unsigned int	ft_puthexp(unsigned long n, char c)
 		mod = n % 16;
 		n /= 16;
 		ft_puthexp(n, c);
-		ft_putchar_fd(base[mod], 1);
-		count++;
+		count += ft_putchar_fd(base[mod], 1);
 	}
 	else
-	{
-		ft_putchar_fd(base[n], 1);
-		count++;
-	}
+		count += ft_putchar_fd(base[n], 1);
 	return (count);
 }
