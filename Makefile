@@ -6,11 +6,11 @@
 #    By: jibot <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/19 19:19:15 by jibot             #+#    #+#              #
-#    Updated: 2021/11/03 18:18:06 by jibot            ###   ########.fr        #
+#    Updated: 2021/11/04 15:56:59 by jibot            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= printlibft.a
+NAME	= libftprintf.a
 
 CC		= gcc
 
@@ -20,7 +20,7 @@ RM		= rm -f
 
 CFLAGS	= -Wall -Werror -Wextra
 
-SRCS	= ft_printf.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_putnbru_fd.c ft_puthex.c ft_puthexp.c
+SRCS	= ft_printf.c ft_putchar_fd.c ft_putstr_fd.c ft_putnbr_fd.c ft_putnbru_fd.c ft_puthex.c ft_puthexp.c
 
 OBJS	= ${SRCS:.c=.o}
 

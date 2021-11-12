@@ -6,7 +6,7 @@
 /*   By: jibot <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 12:42:23 by jibot             #+#    #+#             */
-/*   Updated: 2021/11/04 19:39:44 by jibot            ###   ########.fr       */
+/*   Updated: 2021/11/12 17:14:58 by jibot            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -28,16 +28,17 @@ static int	ft_putform(va_list ap, char flag)
 		return (ft_puthex(va_arg(ap, unsigned int), flag));
 	else if (flag == 'u')
 		return (ft_putnbru_fd(va_arg(ap, unsigned int), 1));
+	else if (flag == '%')
+		return (ft_putchar_fd('%', 1));
 	else
 		return (0);
 }
 
-
 int	ft_printf(const char *format, ...)
 {
-	int	i;
-	int	count;
-	va_list			ap;
+	int		i;
+	int		count;
+	va_list	ap;
 
 	va_start(ap, format);
 	i = 0;
@@ -46,14 +47,10 @@ int	ft_printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
-			if (format[i + 1] == '%' && format[i - 1] != '%')
-				count += ft_putchar_fd('%', 1);
-			else if (format[i + 1] == '%' && format[i - 1] == '%' && format[i - 2] == '%')
-				count += ft_putchar_fd('%', 1);
-			else
-				count += ft_putform(ap, format[i + 1]);
+			count += ft_putform(ap, format[i + 1]);
+			i++;
 		}
-		else if (format[i - 1] != '%')
+		else
 			count += ft_putchar_fd(format[i], 1);
 		i++;
 	}
