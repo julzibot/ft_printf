@@ -6,7 +6,7 @@
 /*   By: jibot <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 16:02:09 by jibot             #+#    #+#             */
-/*   Updated: 2021/11/04 18:28:48 by jibot            ###   ########.fr       */
+/*   Updated: 2021/11/12 17:24:52 by jibot            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@
 
 //______________________STRUCTURES______________________//
 
-typedef struct s_clist
+/*typedef struct s_list
 {
 	char				*conv;
 	char				*str;
 	struct s_list		*next;
-}	s_conv;
+}	t_conv;*/
 
-//____________________LST_FUNCTIONS_____________________//
+//______________________FUNCTIONS_______________________//
 
-int				ft_printf(const char *format, ...);
+int	ft_printf(const char *format, ...);
 int	ft_putchar_fd(char c, int fd);
 int	ft_putstr_fd(char *s, int fd);
 int	ft_putnbr_fd(int n, int fd);
